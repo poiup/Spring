@@ -1,0 +1,15 @@
+package com.ict.controller.di.classfile;
+
+public class BalladSinger extends Singer{
+	
+	private Singer singer;
+	
+	// Singer를 상속해서 sing을 오버라이딩
+	public BalladSinger() {
+		
+	}
+	@Override
+	public void Sing(Singer singer) {
+		System.out.println("가수가 발라드 노래를 부릅니다");
+	}
+}

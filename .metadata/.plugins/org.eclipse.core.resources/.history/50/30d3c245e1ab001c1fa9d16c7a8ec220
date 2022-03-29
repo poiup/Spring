@@ -1,0 +1,23 @@
+package com.ict.controller.di.classfile;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Stage {
+	
+	// @Autowired를 입력시 해당 자료형과 일치하는 부품이 공장내에 존재하면 자동으로 결합해줍니다.
+	// 변수위,생성자위 중 하나를 고르시면 됩니다.
+	@Autowired
+	private Singer singer;
+	
+	public Stage() {}
+	public Stage(Singer singer) {
+		this.singer = singer;
+	}
+	
+	public void perform() {
+		System.out.print("무대에서");
+		this.singer.sing();
+	}
+}

@@ -1,0 +1,16 @@
+package com.ict.controller.di.classfile;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class BalladSinger extends Singer{
+	
+	public BalladSinger() {}
+	
+	private Singer singer;
+	
+	// Singer를 상속해서 sing을 오버라이딩
+	public void Sing() {
+		System.out.println("가수가 발라드 노래를 부릅니다");
+	}
+}
