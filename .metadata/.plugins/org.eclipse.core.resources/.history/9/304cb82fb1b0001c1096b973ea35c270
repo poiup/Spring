@@ -1,0 +1,11 @@
+package com.ict.controller.vo;
+
+// 가상의 "회원관리용 VO"
+public class UserVO {
+	
+	private int userNum;
+	private String uesrId;
+	private String userPw;
+	private String userName;
+	private int userAge;
+}
