@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ict.mapper.BoardMapper;
+import com.ict.vo.BoardVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -18,13 +19,32 @@ public class BoardTest {
 	private BoardMapper boardMapper;
 	
 	@Test
+	public void insertBoard() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setTitle("새로넣는글");
+		vo.setContent("새로넣는 본문");
+		vo.setWriter("새로운글쓴이");
+		
+		boardMapper.insertBoard(vo);
+	}
+	
+	@Test
 	public void getList() {
 		log.info(boardMapper.getList());
 	} 
 	
 	@Test
-	public void insertTbl() {
-		boardMapper.insertTbl();
-		log.info(boardMapper.getList());
+	public void getboard() {
+		long bno = 3;
+
+		boardMapper.getboard(bno);
+	}
+	
+	@Test
+	public void delBoard() {
+		long bno = 2;
+		
+		boardMapper.delBoard(bno);	
 	}
 }

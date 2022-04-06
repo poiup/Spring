@@ -8,5 +8,7 @@ public interface BoardMapper {
 	
 	//@Select
 	 public List<BoardVO> getList();
-	 public void insertTbl();
+	 public void insertBoard(BoardVO vo);
+	 public BoardVO getboard(long bno);
+	 public void delBoard(long bno);
 }

@@ -9,14 +9,26 @@
 	<!-- 테이블 전체조회 -->
 	<select id="getList" resultType="com.ict.vo.BoardVO">
 		<![CDATA[
-			Select * from board_tbl
+			SELECT * FROM board_tbl ORDER BY bno
 		]]>
 	</select>
 	
 	<!-- 추가 -->
-	<select id="insertTbl" resultType="com.ict.vo.BoardVO">
+	<select id="insertBoard" resultType="com.ict.vo.BoardVO">
 		<![CDATA[
-			INSERT INTO board_tbl (bno, title, content, writer) VALUES (board_num.nextval, '테스트글', '테스트본문', '글쓴이')			
+			INSERT INTO board_tbl (bno, title, content, writer) VALUES (board_num.nextval, #{title}, #{content}, #{writer})			
+		]]>
+	</select>
+	
+	<select id="getboard" resultType="com.ict.vo.BoardVO">
+		<![CDATA[
+			SELECT * FROM board_tbl WHERE bno = #{bno}
+		]]>
+	</select>
+	
+	<select id="delBoard" resultType="com.ict.vo.BoardVO">
+		<![CDATA[
+			delete FROM board_tbl WHERE bno = #{bno}
 		]]>
 	</select>
 </mapper>
