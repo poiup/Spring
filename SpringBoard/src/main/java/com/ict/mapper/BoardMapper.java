@@ -11,4 +11,8 @@ public interface BoardMapper {
 	 public void insertBoard(BoardVO vo);
 	 public BoardVO getboard(long bno);
 	 public void delBoard(long bno);
+	 public void upDateBoard(BoardVO vo);
+	// vo를 쓰지않고 보내기 위해서는 
+	// 메서드에 변수를 넣을떄 @param(변수명)을 해줘야합니다
+	// 예시public void  upDateBoard(@param("title"), @param("content"), @param("bno"));	
 }

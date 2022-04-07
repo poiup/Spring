@@ -18,7 +18,7 @@ public class BoardTest {
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	@Test
+	//@Test
 	public void insertBoard() {
 		BoardVO vo = new BoardVO();
 		
@@ -34,17 +34,29 @@ public class BoardTest {
 		log.info(boardMapper.getList());
 	} 
 	
-	@Test
+	//@Test
 	public void getboard() {
 		long bno = 3;
 
 		boardMapper.getboard(bno);
 	}
 	
-	@Test
+	//@Test
 	public void delBoard() {
 		long bno = 2;
 		
 		boardMapper.delBoard(bno);	
 	}
+	
+	@Test
+	public void upDateBoard() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setBno((long) 4);
+		vo.setTitle("변경된 제목");
+		vo.setContent("변경된 본문");
+		boardMapper.upDateBoard(vo);	
+	}
+	
+
 }

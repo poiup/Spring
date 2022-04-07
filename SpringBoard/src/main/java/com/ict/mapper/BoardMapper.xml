@@ -31,6 +31,12 @@
 			delete FROM board_tbl WHERE bno = #{bno}
 		]]>
 	</select>
+	
+	<select id="upDateBoard" resultType="com.ict.vo.BoardVO">
+		<![CDATA[
+			UPDATE board_tbl SET title=#{title}, content=#{content}, updatedate=sysdate WHERE bno=#{bno}
+		]]>
+	</select>
 </mapper>
 
 	
