@@ -2,11 +2,14 @@ package com.ict.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.mapper.BoardMapper;
 import com.ict.vo.BoardVO;
@@ -49,5 +52,53 @@ public class BoardController {
 		model.addAttribute("board", board);
 		return "boardDetail";
 	}
+	
+	// insert페이지를 위한 form으로 연결되는 컨트롤러 생성
+	// get방식으로 /boardInsert주소로 접속시 form페이지로 연결됩니다
+	// 폼 페이지의 이름은 boardForm.jsp
+	@GetMapping(value="/boardInsert")
+	public String boardForm() {
+		
+		return "boardForm";
+	}
+	
+	@PostMapping(value="/boardInsert")
+	public String boardInsert(BoardVO board) {
+		
+		log.info(board);
+		//boardMapper.insertBoard(board);
+		
+		return "redirect:/boardList";
+	}
+	
+	// 글삭제 로직은 Post방식으로 진행합니다.
+	// /boardDelete 주소로 처리하고
+	// bno를 받아서 해당 글을 삭제합니다.
+	// 글 삭제 버튼은 detail페이지 하단에 form으로 만들어서 bno를 hidden으로 전달하는
+	// submit버튼을 생성해서 처리해주세요
+	@PostMapping(value="/boardDelete")
+	public String boardDelete(long bno) {
+		boardMapper.delBoard(bno);
+		
+		return "redirect:/boardList";
+	}
+	
+	// 업데이트 폼
+		@PostMapping(value="/boardUpdateForm")
+		public String boardUpdateForm(@RequestParam long bno, Model model) {
+			log.info(bno);
+			BoardVO board = boardMapper.getboard(bno);
+			model.addAttribute("board", board);
+			log.info(board);
+			return "/boardUpdateForm";
+		}
+		
+		// 업데이트 진행
+		@PostMapping(value="/boardUpdate")
+		public String boardForm(BoardVO board) {
+			log.info(board);
+			boardMapper.upDateBoard(board);	
+			return "redirect:/boardDetail/"+board.getBno();
+		}
 
 }
