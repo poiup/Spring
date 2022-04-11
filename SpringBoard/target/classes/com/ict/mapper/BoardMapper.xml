@@ -9,7 +9,10 @@
 	<!-- 테이블 전체조회 -->
 	<select id="getList" resultType="com.ict.vo.BoardVO">
 		<![CDATA[
-			SELECT * FROM board_tbl ORDER BY bno
+				SELECT * FROM
+				(SELECT	/*+ INDEX_DESC(board_tbl pk_board)*/
+				rownum rn, board_tbl.* from board_tbl WHERE rownum <= ( #{pageNum} * #{pageList}))
+				WHERE rn > (( #{pageNum}-1) * #{pageList})
 		]]>
 	</select>
 	

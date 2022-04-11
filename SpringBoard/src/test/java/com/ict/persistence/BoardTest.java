@@ -1,5 +1,7 @@
 package com.ict.persistence;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ict.mapper.BoardMapper;
 import com.ict.vo.BoardVO;
+import com.ict.vo.PageVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -31,7 +34,9 @@ public class BoardTest {
 	
 	@Test
 	public void getList() {
-		log.info(boardMapper.getList());
+		PageVO vo = new PageVO();
+		List<BoardVO> boardList = boardMapper.getList(vo);
+		log.info(boardMapper.getList(vo));
 	} 
 	
 	//@Test
@@ -48,7 +53,7 @@ public class BoardTest {
 		boardMapper.delBoard(bno);	
 	}
 	
-	@Test
+	//@Test
 	public void upDateBoard() {
 		BoardVO vo = new BoardVO();
 		

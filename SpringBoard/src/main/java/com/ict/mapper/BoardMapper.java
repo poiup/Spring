@@ -3,11 +3,12 @@ package com.ict.mapper;
 import java.util.List;
 
 import com.ict.vo.BoardVO;
+import com.ict.vo.PageVO;
 
 public interface BoardMapper {
 	
 	//@Select
-	 public List<BoardVO> getList();
+	 public List<BoardVO> getList(PageVO vo);
 	 public void insertBoard(BoardVO vo);
 	 public BoardVO getboard(long bno);
 	 public void delBoard(long bno);

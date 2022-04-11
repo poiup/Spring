@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.mapper.BoardMapper;
 import com.ict.vo.BoardVO;
+import com.ict.vo.PageVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,8 +27,12 @@ public class BoardController {
 	// 전체회원을 보려면, 회원 목록을 들고오는 메서드를 실행해야하고
 	// 그러면, 그 메서드를 보유하고있는 클래스를 선언하고 주입해줘야 합니다.
 	@GetMapping(value="/boardList")
-	public String boardList(Model model) {
-		List<BoardVO> boardList = boardMapper.getList();
+	public String boardList(Long pageNum, Long pageList, Model model) {
+		PageVO vo = new PageVO();
+		if(pageNum != null) vo.setPageNum(pageNum);
+		if(pageList != null) vo.setPageList(pageList);
+		
+		List<BoardVO> boardList = boardMapper.getList(vo);
 		
 		model.addAttribute("boardList",boardList);
 		return "boardList";
