@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.mapper.BoardMapper;
 import com.ict.vo.BoardVO;
+import com.ict.vo.Criteria;
 import com.ict.vo.PageVO;
+import com.ict.vo.pageMaker;
 
 import lombok.extern.log4j.Log4j;
 
@@ -27,15 +29,21 @@ public class BoardController {
 	// 전체회원을 보려면, 회원 목록을 들고오는 메서드를 실행해야하고
 	// 그러면, 그 메서드를 보유하고있는 클래스를 선언하고 주입해줘야 합니다.
 	@GetMapping(value="/boardList")
-	public String boardList(Long pageNum, Long pageList, Model model) {
-		PageVO vo = new PageVO();
-		if(pageNum != null) vo.setPageNum(pageNum);
-		if(pageList != null) vo.setPageList(pageList);
+	public String boardList(Criteria cri, Model model) {
+	// public String boardList(@RequestParam(name="pageNum" defaultValue = "1")Long pageNum, Long pageList, Model model)
 		
-		List<BoardVO> boardList = boardMapper.getList(vo);
 		
+		List<BoardVO> boardList = boardMapper.getList(cri);
 		model.addAttribute("boardList",boardList);
+		
+		pageMaker pageMaker = new pageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalBoard(boardMapper.countPageNum()); // totalBoard안에잇는 calc()까지 호출이됨
+		model.addAttribute("pageMaker", pageMaker);
+		
 		return "boardList";
+		
+		
 	}
 	
 	// 글 하나만 조회할수 있는 디테일 페이지만 boardDetail.jsp로 연결되는

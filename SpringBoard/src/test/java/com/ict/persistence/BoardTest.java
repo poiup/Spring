@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ict.mapper.BoardMapper;
 import com.ict.vo.BoardVO;
+import com.ict.vo.Criteria;
 import com.ict.vo.PageVO;
 
 import lombok.extern.log4j.Log4j;
@@ -32,9 +33,9 @@ public class BoardTest {
 		boardMapper.insertBoard(vo);
 	}
 	
-	@Test
+	//@Test
 	public void getList() {
-		PageVO vo = new PageVO();
+		Criteria vo = new Criteria();
 		List<BoardVO> boardList = boardMapper.getList(vo);
 		log.info(boardMapper.getList(vo));
 	} 
@@ -63,5 +64,9 @@ public class BoardTest {
 		boardMapper.upDateBoard(vo);	
 	}
 	
-
+	@Test
+	public void countPageNum() {
+		boardMapper.countPageNum();
+		log.info(boardMapper.countPageNum());
+	}
 }

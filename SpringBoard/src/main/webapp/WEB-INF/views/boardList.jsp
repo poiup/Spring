@@ -33,5 +33,21 @@
   </tbody>
 </table>
 <button><a href="/boardInsert">글쓰기</a></button>
+${pageMaker }
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item ${pageMaker.prev == true ? '' : 'disabled' }">
+      <a class="page-link" href="/boardList?pageNum=${pageMaker.startPage -1 }">&laquo;</a>
+    </li>
+    <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+      <li class="page-item ${pageMaker.cri.pageNum == page ? 'active' : ''}">
+   	    <a class="page-link" href="/boardList?pageNum=${page }">${page }</a>
+      </li>
+   </c:forEach>
+   <li class="page-item ${pageMaker.next == true && pageMaker.endPage > 0 ? '' : 'disabled' }">
+     <a class="page-link" href="/boardList?pageNum=${pageMaker.endPage +1 }">&raquo;</a>
+   </li>
+  </ul>
+</nav>
 </body>
 </html>
