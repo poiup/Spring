@@ -23,8 +23,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int countPageNum() {
-		return boardMapper.countPageNum();
+	public int countPageNum(SearchCriteria cri) {
+		return boardMapper.countPageNum(cri);
 	}
 
 	@Override

@@ -41,14 +41,17 @@ public class BoardController {
 		
 		pageMaker pageMaker = new pageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalBoard(Service.countPageNum()); // totalBoard안에잇는 calc()까지 호출이됨
+		pageMaker.setTotalBoard(Service.countPageNum(cri)); // totalBoard안에잇는 calc()까지 호출이됨
 		model.addAttribute("pageMaker", pageMaker);
 		
+		/*
+			-세션을 이용한 검색내용 유지
 		if(session.getAttribute("sessionCri") == null) {
 			session.setAttribute("sessionCri", pageMaker.getCri());
 		} else if(session.getAttribute("sessionCri") != null && cri.getKeyword() != null && cri.getSearchType() != null) {
 			session.setAttribute("sessionCri", pageMaker.getCri());
 		}
+		 */
 		return "boardList";
 		
 		

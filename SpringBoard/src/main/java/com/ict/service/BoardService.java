@@ -15,6 +15,6 @@ public interface BoardService {
 	public BoardVO getboard(long bno);
 	public void delBoard(long bno);
 	public void upDateBoard(BoardVO vo);
-	public int countPageNum();
+	public int countPageNum(SearchCriteria cri);
 	public String searchStay(String searchType, String keyword);
 }

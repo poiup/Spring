@@ -12,6 +12,7 @@ import com.ict.mapper.BoardMapper;
 import com.ict.vo.BoardVO;
 import com.ict.vo.Criteria;
 import com.ict.vo.PageVO;
+import com.ict.vo.SearchCriteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -35,7 +36,10 @@ public class BoardTest {
 	
 	//@Test
 	public void getList() {
-		Criteria vo = new Criteria();
+		SearchCriteria vo = new SearchCriteria();
+		
+		vo.setSearchType("tc");
+		vo.setKeyword("테스트본문");
 		List<BoardVO> boardList = boardMapper.getList(vo);
 		log.info(boardMapper.getList(vo));
 	} 
@@ -64,9 +68,13 @@ public class BoardTest {
 		boardMapper.upDateBoard(vo);	
 	}
 	
-	@Test
+	 @Test
 	public void countPageNum() {
-		boardMapper.countPageNum();
-		log.info(boardMapper.countPageNum());
+		SearchCriteria vo = new SearchCriteria();
+		// vo.setSearchType("tc");
+		// vo.setKeyword("테스트본문");
+		log.info(vo);
+		boardMapper.countPageNum(vo);
+		log.info(boardMapper.countPageNum(vo));
 	}
 }

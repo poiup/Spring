@@ -22,7 +22,7 @@
 			<div class="col-6">${board.regdate}</div>
 			<div class="col-6">${board.updatedate }</div>
 		</div>
-		<button><a href="/boardList">글목록</a></button>
+		<button><a href="/boardList?pageNum=${param.pageNum }&searchType=${param.searchType}&keyword=${param.keyword}">글목록</a></button>
 		<form action="/boardUpdateForm" method="post">
 			<input type="hidden" name="bno" value="${board.bno }">
 			<input type="submit" value="수정">
@@ -31,6 +31,7 @@
 			<input type="hidden" name="bno" value="${board.bno }">
 			<input type="submit" value="삭제">
 		</form>
+		${param.pageNum }
 	</div>
 </body>
 </html>
