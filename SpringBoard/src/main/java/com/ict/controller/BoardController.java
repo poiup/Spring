@@ -1,6 +1,8 @@
 package com.ict.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ict.service.BoardService;
 import com.ict.vo.BoardVO;
@@ -100,9 +103,19 @@ public class BoardController {
 	// 글 삭제 버튼은 detail페이지 하단에 form으로 만들어서 bno를 hidden으로 전달하는
 	// submit버튼을 생성해서 처리해주세요
 	@PostMapping(value="/boardDelete")
-	public String boardDelete(long bno) {
+	public String boardDelete(long bno, Model model,SearchCriteria cri, RedirectAttributes rttr) {
 		Service.delBoard(bno);
 		
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("pageNum", cri.getPageNum());
+		parameters.put("pageNum", cri.getSearchType());
+		parameters.put("pageNum", cri.getKeyword());
+		rttr.addAttribute(parameters);
+		/*
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword",cri.getKeyword());
+		*/
 		return "redirect:/boardList";
 	}
 	
@@ -118,9 +131,19 @@ public class BoardController {
 		
 		// 업데이트 진행
 		@PostMapping(value="/boardUpdate")
-		public String boardForm(BoardVO board) {
+		public String boardForm(BoardVO board, Model model,SearchCriteria cri, RedirectAttributes rttr) {
 			log.info(board);
-			Service.upDateBoard(board);	
+			log.info(cri);
+			log.info(cri.getPageNum());
+			Service.upDateBoard(board);
+			// rttr.addAttribut("파라미터명", "전달자료")
+			// 는 호출되면 redirect 주소 뒤에 파랄미터를 붙여줍니다.
+			// rttr.addFlashAttribute()는 넘어간 페이지에서 파라미터를 
+			// 쓸수 있도록 전달하는것으로 틀의 역활이 다르니 주의해주세요
+			rttr.addAttribute("pageNum", cri.getPageNum());
+			rttr.addAttribute("searchType", cri.getSearchType());
+			rttr.addAttribute("keyword",cri.getKeyword());
+
 			return "redirect:/boardDetail/"+board.getBno();
 		}
 

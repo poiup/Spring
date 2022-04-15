@@ -19,6 +19,9 @@
 			<textarea rows="10" cols="40" name="content">${board.content }</textarea>
 		</div>
 		<input type="hidden" value="${board.bno }" name="bno">
+		<input type="hidden" name="pageNum" value="${param.pageNum }">
+		<input type="hidden" name="searchType" value="${param.searchType }">
+		<input type="hidden" name="keyword" value="${param.keyword }">
 		<input type="submit">
 	</div>
 </form>

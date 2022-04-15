@@ -19,6 +19,9 @@
 			<textarea rows="10" cols="40" name="content"></textarea>
 		</div>
 		<input type="submit">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="searchType" value="${pageMaker.cri.searchType }">
+		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 	</div>
 </form>
 </body>
