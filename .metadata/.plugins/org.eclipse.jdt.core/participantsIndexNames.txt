@@ -3,8 +3,6 @@ C:\eclipse\spring_1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\265827
 \SpringBasic\src\main\java
 C:\eclipse\spring_1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\299335866.index
 \SpringBoard\src\main\java
-C:\eclipse\spring_1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1189345952.index
-\prj_spring\src\main\java
 C:\eclipse\spring_1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\896491455.index
 \springTest\src\main\java
 C:\eclipse\spring_1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2315805806.index
