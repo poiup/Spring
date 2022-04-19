@@ -3,10 +3,12 @@ package com.ict.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ict.mapper.ReplyMapper;
 import com.ict.vo.ReplyVO;
 
+@Service
 public class ReplyServiceImpl implements ReplyService {
 
 	@Autowired
