@@ -22,15 +22,15 @@
 			<div class="col-6">${board.regdate}</div>
 			<div class="col-6">${board.updatedate }</div>
 		</div>
-		<button><a href="/boardList?pageNum=${param.pageNum == null ? 1 : param.pageNum }&searchType=${param.searchType}&keyword=${param.keyword}">글목록</a></button>
-		<form action="/boardUpdateForm" method="post">
+		<button><a href="/Board/boardList?pageNum=${param.pageNum == null ? 1 : param.pageNum }&searchType=${param.searchType}&keyword=${param.keyword}">글목록</a></button>
+		<form action="/Board/boardUpdateForm" method="post">
 			<input type="hidden" name="bno" value="${board.bno }">
 			<input type="hidden" name="pageNum" value="${param.pageNum }">
 			<input type="hidden" name="searchType" value="${param.searchType }">
 			<input type="hidden" name="keyword" value="${param.keyword }">
 			<input type="submit" value="수정">
 		</form>
-		<form action="/boardDelete" method="post">
+		<form action="/Board/boardDelete" method="post">
 			<input type="hidden" name="bno" value="${board.bno }">
 			<input type="hidden" name="pageNum" value="${param.pageNum }">
 			<input type="hidden" name="searchType" value="${param.searchType }">

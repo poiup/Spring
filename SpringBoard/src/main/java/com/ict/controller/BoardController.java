@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ict.service.BoardService;
@@ -28,7 +30,9 @@ import lombok.extern.log4j.Log4j;
 //컨트롤러가 컨트롤러 기능을 할수 있도록 처리해주세요
 @Controller
 @Log4j
+@RequestMapping("/Board")
 public class BoardController {
+	
 	// 컨트롤러는 Service만 호출하도록 구조를 바꿉니다.
 	// Service를 BoardController 내부에서 쓸수 있도록 선언/주입해주세요.
 	@Autowired
@@ -104,19 +108,20 @@ public class BoardController {
 	// submit버튼을 생성해서 처리해주세요
 	@PostMapping(value="/boardDelete")
 	public String boardDelete(long bno, Model model,SearchCriteria cri, RedirectAttributes rttr) {
-		Service.delBoard(bno);
 		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("pageNum", cri.getPageNum());
-		parameters.put("pageNum", cri.getSearchType());
-		parameters.put("pageNum", cri.getKeyword());
+		parameters.put("searchType", cri.getSearchType());
+		parameters.put("keyword", cri.getKeyword());
+		log.info(parameters);
 		rttr.addAttribute(parameters);
 		/*
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword",cri.getKeyword());
 		*/
-		return "redirect:/boardList";
+		Service.delBoard(bno);
+		return "redirect:/Board/boardList";
 	}
 	
 	// 업데이트 폼
@@ -144,7 +149,7 @@ public class BoardController {
 			rttr.addAttribute("searchType", cri.getSearchType());
 			rttr.addAttribute("keyword",cri.getKeyword());
 
-			return "redirect:/boardDetail/"+board.getBno();
+			return "redirect:/Board/boardDetail/"+board.getBno();
 		}
 
 }

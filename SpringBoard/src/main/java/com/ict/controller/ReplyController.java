@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.service.ReplyService;
@@ -30,7 +32,7 @@ public class ReplyController {
 	// jackson-databind 추가해야 작동
 	@PostMapping(value="", consumes="application/json", 
 							produces= {MediaType.TEXT_PLAIN_VALUE})
-	// produces에 TEXT_LAIN_VALUE를 줬으므로 결과 코드와 물자열을 넘김
+	// produces에 TEXT_PLAIN_VALUE를 줬으므로 결과 코드와 물자열을 넘김
 	public ResponseEntity<String> register(
 					// rest컨트롤러에서 받는 파라미터 앞에
 					// @RequestBody 어노테이션이 붙어야
@@ -72,4 +74,49 @@ public class ReplyController {
 		}
 		return entity;
 	} 
+	
+	// 일반 방식이 아닌 rest방식에서는 삭제로직 post가 아닌
+	// delete 방식으로 요청하기 떄문에 @DeleteMapping 을 씁니다.
+	@DeleteMapping(value="{rno}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> remove(@PathVariable Long rno){
+		ResponseEntity<String> entity = null;
+		service.removeReply(rno);
+		try {
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String> (e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
+					value="{rno}",
+					consumes = "application/json",
+					produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modify(
+			// VO는 우선 payload에 적힌 데이터로 받아옵니다.
+			// @RequestBody가 붙은 VO는
+			// payload에 적힌 데이터를 VO로 환산해서 가져옵니다.
+			@RequestBody ReplyVO vo,
+			// 단, 댓글번호는 주소에 기입된 숫자를 자원으로 받아옵니다.
+			@PathVariable Long rno){
+		ResponseEntity<String> entity = null;
+		try {
+			// payload에는 reply만 넣어줘도 되는데 그 이유는
+			// rno는 요청주소로 받아오기 떄문입니다.
+			// 단, rno를 주소로 받아오는 경우는 아직 replyVO에
+			// rno가 세팅이 되지 않은 상태이므로 setter로 rno까지
+			// 지정해줍니다.
+			vo.setRno(rno);
+			service.modifyReply(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 }

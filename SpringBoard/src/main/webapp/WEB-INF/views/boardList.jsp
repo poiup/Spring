@@ -24,7 +24,7 @@
     <c:forEach var="list" items="${boardList }">
 	     <tr>
 			 <th scope="row">${list.bno }</th>
-	     	 <td><a href="/boardDetail/${list.bno }?pageNum=${pageMaker.cri.pageNum }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${list.title }</a></td>
+	     	 <td><a href="/Board/boardDetail/${list.bno }?pageNum=${pageMaker.cri.pageNum }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${list.title }</a></td>
 			 <td>${list.writer }</td>
 			 <td>${list.regdate }</td>
 			 <td>${list.updatedate }</td>
@@ -32,26 +32,26 @@
     </c:forEach>
   </tbody>
 </table>
-<button><a href="/boardInsert">글쓰기</a></button>
+<button><a href="/Board/boardInsert">글쓰기</a></button>
 
 ${pageMaker }
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item ${pageMaker.prev == true ? '' : 'disabled' }">
-      <a class="page-link" href="/boardList?pageNum=${pageMaker.startPage -1 }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">&laquo;</a>
+      <a class="page-link" href="/Board/boardList?pageNum=${pageMaker.startPage -1 }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">&laquo;</a>
     </li>
     <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
       <li class="page-item ${pageMaker.cri.pageNum == page ? 'active' : ''}">
-   	    <a class="page-link" href="/boardList?pageNum=${page }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${page }</a>
+   	    <a class="page-link" href="/Board/boardList?pageNum=${page }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${page }</a>
       </li>
    </c:forEach>
    <li class="page-item ${pageMaker.next == true && pageMaker.endPage > 0 ? '' : 'disabled' }">
-     <a class="page-link" href="/boardList?pageNum=${pageMaker.endPage +1 }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">&raquo;</a>
+     <a class="page-link" href="/Board/boardList?pageNum=${pageMaker.endPage +1 }&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">&raquo;</a>
    </li>
   </ul>
 </nav> 
 <div class="row">
-	<form action="/boardList" method="get">
+	<form action="/Board/boardList" method="get">
 		<select name="searchType">
 			<option value="n">--</option>
 			<option value="t" ${pageMaker.cri.searchType eq 't' ? 'selected' : '' }>제목</option>

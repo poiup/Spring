@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/boardInsert" method="post">
+<form action="/Board/boardInsert" method="post">
 	<div class="container">
 		<input type="text" name="title" placeholder="제목">
 		<div class="row">
