@@ -98,7 +98,7 @@ public class BoardController {
 		log.info(board);
 		Service.insertBoard(board);
 		
-		return "redirect:/boardList";
+		return "redirect:/Board/boardList";
 	}
 	
 	// 글삭제 로직은 Post방식으로 진행합니다.
@@ -115,12 +115,12 @@ public class BoardController {
 		parameters.put("keyword", cri.getKeyword());
 		log.info(parameters);
 		rttr.addAttribute(parameters);
+		Service.delBoard(bno);
 		/*
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword",cri.getKeyword());
 		*/
-		Service.delBoard(bno);
 		return "redirect:/Board/boardList";
 	}
 	

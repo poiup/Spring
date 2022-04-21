@@ -19,7 +19,7 @@ import com.ict.service.ReplyService;
 import com.ict.vo.ReplyVO;
 
 @RestController
-@RequestMapping("/relies")// 접속시 기본주소로 replies가 붙음
+@RequestMapping("/replies")// 접속시 기본주소로 replies가 붙음
 public class ReplyController {
 	
 	@Autowired
