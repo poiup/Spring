@@ -46,7 +46,7 @@ public class ReplyController {
 			service.addReply(vo);
 			// 성공했을때 화면에 띄울 ResponsEntity 생성
 			entity = new ResponseEntity<String>
-						("hello", HttpStatus.OK); 
+						("SUCCESS", HttpStatus.OK); 
 		} catch(Exception e) {
 			// catch로 넘어왔다라는건 글쓰기 로직에 문제가 생긴 상황
 			// 에러가 나면 에러 메세지와 함께 ResponseEntity 생성
@@ -118,5 +118,6 @@ public class ReplyController {
 		}
 		return entity;
 	}
+	
 	
 }

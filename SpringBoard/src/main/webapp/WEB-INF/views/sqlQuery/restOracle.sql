@@ -9,7 +9,14 @@ create table reply_tbl(
 
 create sequence reply_num;
 
-alter table reply_tbl add constraint pk_reply primary key(bno);
+alter table reply_tbl add constraint pk_reply primary key(rno);
 
 alter table reply_tbl add constraint fk_reply
 foreign key (bno) references board_tbl(bno);
+
+INSERT INTO reply_tbl
+		(rno, bno, reply, replyer) 
+			values
+		(reply_num.nextval,311353 , '¾È³ç', 'ÇÏ¼¼¿ä');
+        
+select * from reply_tbl;

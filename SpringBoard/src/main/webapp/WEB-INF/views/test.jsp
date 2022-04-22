@@ -23,8 +23,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	 function getReplies(){
-			var bno = 16384;
+			var bno = 311353;
+	 function getAllList(){
 						// 주소					// 콜백함수 주소요청으로 얻어온 json을 어떻게 처리할지
 			$.getJSON("/replies/all/" + bno, function(data){
 				//getJSON은 rest컨트롤러에 get방식으로 요청을 넣습니다.
@@ -47,7 +47,7 @@
 					$("#replies").html(str);
 				});
 		}
-	 
+	 	getAllList();
 		// 버튼 클릭시 발동되는 이벤트
 					// testBtn클릭시  //함수 실행(45~48)
 		$("#testBtn").on("click", function(){
