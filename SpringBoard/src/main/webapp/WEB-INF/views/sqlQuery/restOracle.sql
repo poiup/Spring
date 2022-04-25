@@ -20,3 +20,5 @@ INSERT INTO reply_tbl
 		(reply_num.nextval,311353 , '¾È³ç', 'ÇÏ¼¼¿ä');
         
 select * from reply_tbl;
+
+alter sequence reply_num nocache;

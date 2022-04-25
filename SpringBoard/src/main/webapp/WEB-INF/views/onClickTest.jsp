@@ -24,6 +24,7 @@
  	$("#requestBtn").on("click", function(){
  		var str="";
  		console.log("/replies/all/" + bno);
+ 		// select구문을 실행할떄 getJSON을 이용해서 값을 받아옵니다.
  		$.getJSON("/replies/all/" + bno, function(data){
 			$(data).each(function(){
 						str += "<li data-rno='" + this.rno + "' class='replyLi'>"

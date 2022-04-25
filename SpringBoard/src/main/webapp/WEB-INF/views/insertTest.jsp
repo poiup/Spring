@@ -23,8 +23,8 @@
  	<script type="text/javascript">
  		function addReply(){
  			var bno = $("#newbno").val();
- 			var replyer = $("#newReplyWriter").val();
  			var reply = $("#newReply").val();
+ 			var replyer = $("#newReplyWriter").val();
  			$.ajax({
  				type: 'post',
  				url : '/replies',

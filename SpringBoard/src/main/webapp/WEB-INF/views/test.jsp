@@ -18,12 +18,22 @@
 <ul id="test">
 </ul>
 <button id="testBtn">다음링크 생성</button>
-<button onclick="getReplies()">댓글 불러오기</button>
+<button onclick="getAllList()">댓글 불러오기</button>
+<div>
+		<div>
+			REPLYER <input type="text" name="replyer" id="newReplyWriter">
+		</div>
+		<div>
+			REPLY TEXT <input type="text" name="reply" id="newReply">
+		</div>
+		<button id="replyAddBtn" onclick="addReply()">ADD REPLY</button>
+	</div>
 <!--jquery는 여기서  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	
 			var bno = 311353;
+			// 댓글 불러오는 function
 	 function getAllList(){
 						// 주소					// 콜백함수 주소요청으로 얻어온 json을 어떻게 처리할지
 			$.getJSON("/replies/all/" + bno, function(data){
@@ -39,7 +49,7 @@
 					// 하나하나 반복되는 각 데이터는 this라는 키워드로 표현합니다.
 							str += "<li data-rno='" + this.rno + "' class='replyLi'>"
 								+ this.rno + ":" + this.reply
-								+ "<li>";
+								+ "<button>수정/삭제</button><li>";
 				
 								console.log("-------------------------------------")
 								console.log(this)
@@ -47,12 +57,48 @@
 					$("#replies").html(str);
 				});
 		}
-	 	getAllList();
+		
+		function addReply(){
+			var reply = $("#newReply").val();
+			var replyer = $("#newReplyWriter").val();
+			$.ajax({
+				type : 'post',
+				url : '/replies',
+				headers : {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "POST"
+				},
+				dataType : 'text',
+				data : JSON.stringify({
+					bno : bno,
+					reply : reply,
+					replyer : replyer
+				}),
+				success : function(result){
+					getAllList();
+					alert("등록되었습니다.");
+					// 글적으면 내부 내용 비우기
+					$("#newReply").val("");
+					$("#newReplyWriter").val("");
+				}
+			})
+		}
+			
 		// 버튼 클릭시 발동되는 이벤트
 					// testBtn클릭시  //함수 실행(45~48)
 		$("#testBtn").on("click", function(){
 			var strTest = "<a href='https://www.daum.net/'>다음으로 이동</a>";
 			$("#test").html(strTest);
+		})
+		
+		$("#replies").on("click", ".replyLi button", function(){
+			// 클릭한 버튼과 연계된 부모태그인 li태그를 replytag변수에 저장합니다.
+			var replytag = $(this).parent();
+			console.log(replytag);
+			var rno = replytag.attr("data-rno");
+			var reply = replytag.text();
+			
+			alert(rno + "  : " + reply);
 		})
 	
 </script>
