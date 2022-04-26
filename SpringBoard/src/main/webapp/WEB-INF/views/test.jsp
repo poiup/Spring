@@ -5,8 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <style type="text/css">
 	* {list-style: none}
+	
+	#modDiv {
+		width:300px;
+		height:100px;
+		background-color: green;
+		position:absolute;
+		top : 50%;
+		left : 50%;
+		transform: translate(-30%, -50%);
+	}
 </style>
 </head>
 <body>
@@ -28,10 +40,27 @@
 		</div>
 		<button id="replyAddBtn" onclick="addReply()">ADD REPLY</button>
 	</div>
+	
+	<!-- modal은 일종의 팝업입니다.
+	단 새창을 띄우지 않고 css를 이용해 특정 태그가 조건부로  보이거나 안보이도록 처리해서 마치 새로 창이
+	띄워지는것처럼 만듭니다.
+	따라서 눈에 보이지않아도 modal을 구성하는 태그 차제는 미리 적혀있어야 합니다.-->
+	
+	<div id="modDiv" style="display:none">
+		<div class="modal-title"></div>
+		<div>
+			<input type="text" id="reply"/>
+		</div>
+		<div>
+			<button type="button" id="replyModBtn">Modify</button>
+			<button type="button" id="replyDelBtn">Delete</button>
+			<button type="button" id="closeBtn">Close</button>
+		</div>
+	</div>
+	
 <!--jquery는 여기서  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	
 			var bno = 311353;
 			// 댓글 불러오는 function
 	 function getAllList(){
@@ -83,7 +112,48 @@
 				}
 			})
 		}
-			
+		
+		function replyDelete(){
+			var rno = $(".modal-title").html();
+			$.ajax({
+				type : 'delete',
+				url : '/replies/' + rno,
+				headers : {
+					"Context-Type" : "application/json",
+					"X-HTTP-Method-Override" : "DELETE"
+				},
+				dataType : 'text',
+				success : function(){
+					alert("삭제되었습니다");
+					$("#modDiv").hide();
+					getAllList();
+				}
+			})
+		}
+		
+		function replyPatch(){
+			var rno = $(".modal-title").html();
+			var reply = $("#reply").val();
+			$.ajax({
+				type : 'patch',
+				url : '/replies/' + rno,
+				headers : {
+					"Context-Type" : "application/json",
+					"X-HTTP-Method-Override" : "PATCH"
+				},
+				contentType : "application/json",
+				data : JSON.stringify({reply : reply}),
+				dataType : 'text',
+				success : function(){
+					alert("수정되었습니다.");
+					$("#modDiv").hide();
+					getAllList();
+				}
+			})
+		}
+	
+		
+		
 		// 버튼 클릭시 발동되는 이벤트
 					// testBtn클릭시  //함수 실행(45~48)
 		$("#testBtn").on("click", function(){
@@ -94,13 +164,26 @@
 		$("#replies").on("click", ".replyLi button", function(){
 			// 클릭한 버튼과 연계된 부모태그인 li태그를 replytag변수에 저장합니다.
 			var replytag = $(this).parent();
-			console.log(replytag);
 			var rno = replytag.attr("data-rno");
 			var reply = replytag.text();
-			
-			alert(rno + "  : " + reply);
+			// 모달 내부에 값을 전달
+			$(".modal-title").html(rno);
+			$("#reply").val(reply);
+			$("#modDiv").show("slow");
 		})
-	
+		// 모달 종료 함수
+		$("#closeBtn").on("click", function(){
+			$("#modDiv").hide("slow");
+		})
+		// 삭제버튼 클릭시 삭제
+		$("#replyDelBtn").on("click", function(){
+			replyDelete();
+		})
+		
+		// 수정버튼 클릭시 수정
+		$("#replyModBtn").on("click", function(){
+			replyPatch();
+		})
 </script>
 </body>
 </html>
