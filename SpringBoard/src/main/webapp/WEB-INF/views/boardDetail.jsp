@@ -54,14 +54,19 @@
 			</ul>
 		</div>
 		<button onclick="getAllList()">댓글 불러오기</button>
-		<div>
-			<div>
-				REPLYER <input type="text" name="replyer" id="newReplyWriter">
+		<div class="row box-box-success">
+			<div class="box-header">
+				<h2 class="text-primary"></h2>
+				<div class="box-body">
+					<strong>글쓴이</strong>
+					 <input type="text" name="replyer" id="newReplyWriter">
+					<strong>댓글내용</strong>
+					<input type="text" name="reply" id="newReply">
+				</div>
+				<div class="footer">
+					<button id="replyAddBtn" onclick="addReply()">ADD REPLY</button>
+				</div>
 			</div>
-			<div>
-				REPLY TEXT <input type="text" name="reply" id="newReply">
-			</div>
-			<button id="replyAddBtn" onclick="addReply()">ADD REPLY</button>
 		</div>
 	</div>
 	
@@ -104,7 +109,7 @@
 								+ "/" + date.getDate()
 								+ "/" + date.getSeconds();
 								
-			str += "<div class = 'replyLi' data-rno='>"+this.rno + "'><strong>@"
+			str += "<div class = 'replyLi' data-rno='"+this.rno + "'><strong>@"
 				+ this.replyer + "</strong> - " + formattedTime + "<br>"
 				+ "<div class='reply'>" + this.reply + "</div>"
 				+ "<button type='button' class='btn btn-info'>수정/삭제</button>"
@@ -187,6 +192,7 @@
 			var rno = replytag.attr("data-rno");
 			var reply = $(this).prev(".reply").text();
 			// 모달 내부에 값을 전달
+			console.log(replytag.attr("data-rno"));
 			$(".modal-title").html(rno);
 			$("#reply").val(reply);
 			$("#modDiv").show("slow");

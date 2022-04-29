@@ -61,7 +61,7 @@
 <!--jquery는 여기서  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-			var bno = ${board.bno};
+			var bno = 1;
 			// 댓글 불러오는 function
 	 function getAllList(){
 						// 주소					// 콜백함수 주소요청으로 얻어온 json을 어떻게 처리할지

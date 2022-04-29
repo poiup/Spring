@@ -19,6 +19,7 @@ INSERT INTO reply_tbl
 			values
 		(reply_num.nextval,311353 , '¾È³ç', 'ÇÏ¼¼¿ä');
         
-select * from reply_tbl;
+SELECT rownum, rowid, reply_tbl.* FROM reply_tbl;
+
 
 alter sequence reply_num nocache;
