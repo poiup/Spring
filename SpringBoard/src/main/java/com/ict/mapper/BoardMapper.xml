@@ -87,6 +87,12 @@
 			</if>
 		</if>
 	</select>
+	
+	<update id="updateReply">
+		UPDATE board_tbl
+			SET
+		replycount = replycount + #{amount} WHERE bno = #{bno}
+	</update>
 </mapper>
 
 	

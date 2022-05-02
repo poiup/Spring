@@ -4,15 +4,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ict.mapper.BoardMapper;
 import com.ict.mapper.ReplyMapper;
 import com.ict.vo.ReplyVO;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class ReplyServiceImpl implements ReplyService {
 
 	@Autowired
 	private ReplyMapper mapper;
+	
+	@Autowired
+	private BoardMapper bMapper;
 	
 	@Override
 	public void addReply(ReplyVO vo) {
@@ -30,11 +38,15 @@ public class ReplyServiceImpl implements ReplyService {
 		mapper.update(vo);
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public void removeReply(Long rno) {
+		Long bno = mapper.getBno(rno);
+	//	bMapper.updateReply(bno , -1);
 		mapper.delete(rno);
-		
 	}
+	
+	
 
 }
