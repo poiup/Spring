@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.mapper.BoardMapper;
+import com.ict.mapper.ReplyMapper;
 import com.ict.vo.BoardVO;
 import com.ict.vo.SearchCriteria;
 
@@ -16,6 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	// 해당 코드를 작성해주세요.(BoardController.java를 참고하세요
 	@Autowired
 	private BoardMapper boardMapper;
+	@Autowired
+	private ReplyMapper replyMapper;
 
 	@Override
 	public List<BoardVO> getList(SearchCriteria cri) {
@@ -36,10 +40,12 @@ public class BoardServiceImpl implements BoardService {
 	public void insertBoard(BoardVO vo) {
 		boardMapper.insertBoard(vo);
 	}
-
+	
+	@Transactional
 	@Override
-	public void delBoard(long bno) {
+	public void delBoard(Long bno) {
 		boardMapper.delBoard(bno);	
+		replyMapper.delAllReplies(bno);
 	}
 
 	@Override

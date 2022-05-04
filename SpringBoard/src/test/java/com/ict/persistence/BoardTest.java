@@ -44,9 +44,9 @@ public class BoardTest {
 		log.info(boardMapper.getList(vo));
 	} 
 	
-	//@Test
+	@Test
 	public void getboard() {
-		long bno = 3;
+		long bno = 311689;
 
 		boardMapper.getboard(bno);
 	}

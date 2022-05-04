@@ -15,16 +15,18 @@ import lombok.extern.log4j.Log4j;
 @Service
 @Log4j
 public class ReplyServiceImpl implements ReplyService {
-
+	
 	@Autowired
 	private ReplyMapper mapper;
 	
 	@Autowired
 	private BoardMapper bMapper;
 	
+	@Transactional
 	@Override
 	public void addReply(ReplyVO vo) {
 		mapper.create(vo);
+		bMapper.updateReply(vo.getBno(), +1);
 		
 	}
 
@@ -43,9 +45,11 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public void removeReply(Long rno) {
 		Long bno = mapper.getBno(rno);
-	//	bMapper.updateReply(bno , -1);
+		bMapper.updateReply(bno , -1);
 		mapper.delete(rno);
 	}
+
+
 	
 	
 

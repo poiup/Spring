@@ -13,7 +13,7 @@ public interface BoardService {
 	public List<BoardVO> getList(SearchCriteria cri);
 	public void insertBoard(BoardVO vo);
 	public BoardVO getboard(long bno);
-	public void delBoard(long bno);
+	public void delBoard(Long bno);
 	public void upDateBoard(BoardVO vo);
 	public int countPageNum(SearchCriteria cri);
 	public String searchStay(String searchType, String keyword);

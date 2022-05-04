@@ -14,5 +14,6 @@ public interface ReplyMapper {
 	// 댓글삭제시에는 댓글번호 하나만 받아서 해당 댓글만 지운다.
 	public void delete(Long rno);
 	public Long getBno(Long rno);
+	public void delAllReplies(Long bno);
 		
 }

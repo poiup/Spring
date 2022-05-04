@@ -64,11 +64,9 @@
 		]]>
 	</select>
 	
-	<select id="delBoard" resultType="com.ict.vo.BoardVO">
-		<![CDATA[
+	<delete id="delBoard">
 			delete FROM board_tbl WHERE bno = #{bno}
-		]]>
-	</select>
+	</delete>
 	
 	<select id="upDateBoard" resultType="com.ict.vo.BoardVO">
 		<![CDATA[

@@ -107,15 +107,15 @@ public class BoardController {
 	// 글 삭제 버튼은 detail페이지 하단에 form으로 만들어서 bno를 hidden으로 전달하는
 	// submit버튼을 생성해서 처리해주세요
 	@PostMapping(value="/boardDelete")
-	public String boardDelete(long bno, Model model,SearchCriteria cri, RedirectAttributes rttr) {
-		
+	public String boardDelete(Long bno, Model model,SearchCriteria cri, RedirectAttributes rttr) {
+		log.info("test"+bno);
+		Service.delBoard(bno);
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("pageNum", cri.getPageNum());
 		parameters.put("searchType", cri.getSearchType());
 		parameters.put("keyword", cri.getKeyword());
 		log.info(parameters);
 		rttr.addAttribute(parameters);
-		Service.delBoard(bno);
 		/*
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());

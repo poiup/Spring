@@ -15,7 +15,7 @@ public interface BoardMapper {
 	 public List<BoardVO> getList(SearchCriteria vo);
 	 public void insertBoard(BoardVO vo);
 	 public BoardVO getboard(long bno);
-	 public void delBoard(long bno);
+	 public void delBoard(Long bno);
 	 public void upDateBoard(BoardVO vo);
 	 public int countPageNum(SearchCriteria vo);
 	 public String searchStay();
