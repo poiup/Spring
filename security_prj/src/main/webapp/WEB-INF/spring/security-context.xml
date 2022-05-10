@@ -8,6 +8,8 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean id="CustomAccessDenied" class="com.ict.security.CustomAccessDeniedHandler"/>
 	<bean id="CustomLoginSuccess" class="com.ict.security.CustomLoginSuccessHandler"/>
+	<bean id="CustomUserDetailService" class="com.ict.security.CustomUserDetailService"/>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	
 	<security:http> 
 		<!-- /secu/all 접속시 모든유저엑 접근허용 -->
@@ -22,14 +24,21 @@
 		
 		<!--  <security:access-denied-handler error-page="/accessError"/> -->
 		<security:access-denied-handler ref="CustomAccessDenied"/>
+		
+		<security:logout logout-url="/customLogout" invalidate-session="true"/>
 	</security:http>
 	
 	<security:authentication-manager>
-		<security:authentication-provider>
+		<security:authentication-provider user-service-ref="CustomUserDetailService">
+		<!-- 
 			<security:user-service>
 				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
 				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/>
 			</security:user-service>
+		 -->
+		 
+<!-- 		 <security:jdbc-user-service data-source-ref="dataSource"/> -->
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

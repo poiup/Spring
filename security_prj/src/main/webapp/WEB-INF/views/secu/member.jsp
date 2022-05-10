@@ -8,5 +8,8 @@
 </head>
 <body>
 	member주소
+	<a href="/customLogout">
+	로그아웃 페이지
+	</a>
 </body>
 </html>

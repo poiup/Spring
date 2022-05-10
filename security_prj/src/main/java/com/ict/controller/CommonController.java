@@ -4,9 +4,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Log4j
 @Controller
@@ -31,6 +33,14 @@ public class CommonController {
 		if(logout != null) {
 			model.addAttribute("logout", "로그아웃 했습니다.");
 		}
+	}
+	@GetMapping("/customLogout")
+	public void logoutGet() {
+		log.info("로그아웃폼으로 이동");
+	}
+	@PostMapping("/customLogout")
+	public void logoutPost() {
+		log.info("포스트방식으로 로그아웃 요청 처리");
 	}
 
 }
