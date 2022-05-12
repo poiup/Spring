@@ -34,6 +34,7 @@ public class CommonController {
 			model.addAttribute("logout", "로그아웃 했습니다.");
 		}
 	}
+	
 	@GetMapping("/customLogout")
 	public void logoutGet() {
 		log.info("로그아웃폼으로 이동");

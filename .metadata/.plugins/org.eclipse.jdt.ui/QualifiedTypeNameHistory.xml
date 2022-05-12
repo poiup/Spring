@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.sql.Driver"/>
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="com.ict.test.mapper.testmapper"/>
@@ -29,13 +28,11 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="javax.activation.DataSource"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="oracle.jdbc.proxy.annotation.Post"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="com.ctc.wstx.shaded.msv_core.reader.datatype.xsd.XSDatatypeExp"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.util.List"/>
@@ -47,7 +44,6 @@
     <fullyQualifiedTypeName name="org.junit.Test"/>
     <fullyQualifiedTypeName name="org.w3c.dom.UserDataHandler"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.ict.mapper.MemberMapper"/>
     <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
@@ -58,6 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.security.core.GrantedAuthority"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.authority.SimpleGrantedAuthority"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
-    <fullyQualifiedTypeName name="com.ict.domain.MemberVO"/>
     <fullyQualifiedTypeName name="com.ict.domain.CustomUser"/>
+    <fullyQualifiedTypeName name="org.springframework.security.access.prepost.PreAuthorize"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
+    <fullyQualifiedTypeName name="com.ict.domain.MemberVO"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
 </qualifiedTypeNameHistroy>
