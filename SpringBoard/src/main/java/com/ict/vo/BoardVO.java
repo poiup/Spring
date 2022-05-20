@@ -1,6 +1,7 @@
 package com.ict.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 // lombok을 이용해 get-setter, 생성자, toString을 만들어주세요.
 import lombok.Data;
@@ -14,5 +15,7 @@ public class BoardVO {
 	private Date regdate;
 	private Date updatedate;
 	private int replyCount;
+	
+	private List<BoardAttachVO> attachList;
 }
 
